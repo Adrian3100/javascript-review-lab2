@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fortune Teller</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #1a1a1a;
+        color: white;
+      }
+      #fortune {
+        margin-top: 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fortune Teller</h1>
+    <p>Enter your name and age to receive your fortune!</p>
+
+    <input type="text" id="name" placeholder="Enter your name" />
+    <input type="number" id="age" placeholder="Enter your age" />
+    <button onclick="displayFortune()">Get Fortune</button>
+
+    <p id="fortune"></p>
+
+    <script>
+      function fortuneTeller(name, age) {
+        let fortune = "";
+
+        if (name.length > 7) {
+          fortune += "You will marry late in life. ";
+        } else if (name.length < 5) {
+          fortune += "You will marry within a year. ";
+        } else {
+          fortune += "You will encounter a once-in-a-lifetime opportunity. ";
+        }
+
+        if (name[0].toLowerCase() === "r") {
+          fortune += "You will be rich. ";
+        }
+        if (name.toLowerCase().includes("i")) {
+          fortune += "You will fall in love this week. ";
+        }
+
+        if (age < 18) {
+          fortune += "You will become famous at a young age.";
+        } else if (age >= 18 && age <= 30) {
+          fortune += "An exciting adventure awaits you soon.";
+        } else {
+          fortune += "You will receive unexpected good news soon.";
+        }
+
+        return fortune;
+      }
+
+      function displayFortune() {
+        let userName = document.getElementById("name").value;
+        let userAge = parseInt(document.getElementById("age").value);
+
+        if (userName && !isNaN(userAge)) {
+          document.getElementById("fortune").innerText = fortuneTeller(
+            userName,
+            userAge
+          );
+        } else {
+          document.getElementById("fortune").innerText =
+            "Please enter a valid name and age.";
+        }
+      }
+    </script>
+  </body>
+</html>
